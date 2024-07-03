@@ -1,3 +1,3 @@
-export function somar(a: number, b: number) {
-  return a + b
-}
+import Passaro from "./passaro/Passaro"
+
+export { Passaro }
