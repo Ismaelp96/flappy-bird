@@ -1,27 +1,28 @@
-import ObjetoValor from "../shared/ObejtoValor"
-import { EspacoObstaculos } from "./EspacoObstaculos"
+import Obstaculo, { ObstaculoProps } from "./Obstaculo"
 import { Nivel } from "./Nivel"
-import Obstaculo from "./Obstaculo"
 
-export interface CicloObstaculosProps {
+import { EspacoObstaculos } from "./EspacoObstaculos"
+import ObjetoValor from "../shared/ObejtoValor"
+
+export interface ObstaculosProps {
     nivel?: Nivel
     espaco?: EspacoObstaculos
-    itens?: CicloObstaculosProps[]
+    itens?: ObstaculoProps[]
 }
 
-export default class CicloObstaculos extends ObjetoValor<CicloObstaculos> {
+export default class Obstaculos extends ObjetoValor<Obstaculos> {
     readonly nivel: Nivel
     readonly espaco: EspacoObstaculos
     readonly itens: Obstaculo[]
 
-    private constructor(props: CicloObstaculosProps) {
+    private constructor(props: ObstaculosProps) {
         super(props)
         this.nivel = props.nivel!
         this.espaco = props.espaco!
-        this.itens = props.itens!.map((i) => Obstaculo.novo(i))
+        this.itens = props.itens!.map((i) => Obstaculo.novo(i))!
     }
 
-    static novo(props?: CicloObstaculosProps) {
+    static novo(props?: ObstaculosProps) {
         const nivel = props?.nivel ?? Nivel.MEDIO
         const espaco = props?.espaco ?? EspacoObstaculos.NORMAL
         const itensNovos = [
@@ -31,14 +32,15 @@ export default class CicloObstaculos extends ObjetoValor<CicloObstaculos> {
             Obstaculo.novo({ nivel, posicao: 1 + espaco * 3 }),
             Obstaculo.novo({ nivel, posicao: 1 + espaco * 4 }),
         ].map((i) => i.props)
-        return new CicloObstaculos({
+
+        return new Obstaculos({
             nivel,
             espaco,
             itens: props?.itens ?? itensNovos,
         })
     }
 
-    animar(): CicloObstaculos {
+    animar(): Obstaculos {
         const novosItens = this.itens.map((item) => item.animar())
         const maiorPosicao = Math.max(...novosItens.map((item) => item.posicao.valor))
         const menorPosicao = Math.min(...novosItens.map((item) => item.posicao.valor))
@@ -52,7 +54,6 @@ export default class CicloObstaculos extends ObjetoValor<CicloObstaculos> {
                   })
                 : item
         })
-
         return this.clone({ itens: itens.map((i) => i.props) })
     }
 }

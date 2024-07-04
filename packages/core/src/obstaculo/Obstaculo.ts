@@ -1,7 +1,8 @@
-import NumeroAleatorio from "../shared/NumeroAleatorio"
-import ObjetoValor from "../shared/ObejtoValor"
-import Percentual from "../shared/Percentual"
 import { Nivel } from "./Nivel"
+import NumeroAleatorio from "../shared/NumeroAleatorio"
+
+import Percentual from "../shared/Percentual"
+import ObjetoValor from "../shared/ObejtoValor"
 
 export interface ObstaculoProps {
     superior?: number

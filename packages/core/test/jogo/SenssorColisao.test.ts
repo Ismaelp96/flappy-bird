@@ -1,4 +1,4 @@
-import { CicloObstaculos, EspacoObstaculos, Nivel, Passaro } from "../../src"
+import { Obstaculos, EspacoObstaculos, Nivel, Passaro } from "../../src"
 import SensorColisao, { RespostaSensorColisao } from "../../src/jogo/SensorColisao"
 
 function propsObstaculos(posicao: number) {
@@ -27,8 +27,8 @@ test("Deve responder NADA ao aferir os dados pelo sensor", () => {
     const sensor = new SensorColisao()
     const resposta = sensor.aferir(
         passaro,
-        CicloObstaculos.novo(propsObstaculos(0.45)),
-        CicloObstaculos.novo(propsObstaculos(0.44)),
+        Obstaculos.novo(propsObstaculos(0.45)),
+        Obstaculos.novo(propsObstaculos(0.44)),
     )
 
     expect(resposta).toBe(RespostaSensorColisao.NADA)
@@ -38,8 +38,8 @@ test("Deve responder NADA quando não tiver obstáculo no centro", () => {
     const sensor = new SensorColisao()
     const resposta = sensor.aferir(
         passaro,
-        CicloObstaculos.novo(propsObstaculos(0.2)),
-        CicloObstaculos.novo(propsObstaculos(0.19)),
+        Obstaculos.novo(propsObstaculos(0.2)),
+        Obstaculos.novo(propsObstaculos(0.19)),
     )
 
     expect(resposta).toBe(RespostaSensorColisao.NADA)
@@ -49,8 +49,8 @@ test("Deve responder PASSOU ao aferir os dados pelo sensor", () => {
     const sensor = new SensorColisao()
     const resposta = sensor.aferir(
         passaro,
-        CicloObstaculos.novo(propsObstaculos(0.45)),
-        CicloObstaculos.novo(propsObstaculos(0.3)),
+        Obstaculos.novo(propsObstaculos(0.45)),
+        Obstaculos.novo(propsObstaculos(0.3)),
     )
 
     expect(resposta).toBe(RespostaSensorColisao.PASSOU)
@@ -60,8 +60,8 @@ test("Deve responder COLIDIU ao aferir os dados pelo sensor", () => {
     const sensor = new SensorColisao()
     const resposta = sensor.aferir(
         new Passaro({ ...passaro.props, altitude: 0.3 }),
-        CicloObstaculos.novo(propsObstaculos(0.45)),
-        CicloObstaculos.novo(propsObstaculos(0.44)),
+        Obstaculos.novo(propsObstaculos(0.45)),
+        Obstaculos.novo(propsObstaculos(0.44)),
     )
 
     expect(resposta).toBe(RespostaSensorColisao.COLIDIU)
