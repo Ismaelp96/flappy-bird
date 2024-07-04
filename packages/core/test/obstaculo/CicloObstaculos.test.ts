@@ -1,6 +1,4 @@
-import { Nivel } from "../src"
-import CicloObstaculos from "../src/obstaculo/CicloObstaculos"
-import { EspacoObstaculos } from "../src/obstaculo/EspacoObstaculos"
+import { CicloObstaculos, EspacoObstaculos, Nivel } from "../../src"
 
 test("Deve criar obstaculos", () => {
     const obstaculos = CicloObstaculos.novo()
