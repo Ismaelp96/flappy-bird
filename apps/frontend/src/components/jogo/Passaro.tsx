@@ -1,4 +1,5 @@
-import useJogo from "@/data/hook/useJoog"
+"use client"
+import useJogo from "@/data/hook/useJogo"
 import image from "../../../public/passaro.png"
 import Image from "next/image"
 import useDimensoesElemento from "@/data/hook/useDimensoesElemento"
@@ -8,7 +9,8 @@ export interface PassaroProps {
 }
 
 export default function Passaro(props: PassaroProps) {
-    const { passaro } = useJogo()
+    const jogo = useJogo()
+    const { passaro } = jogo || { passaro: {} }
     const { elementoRef, altura, largura } = useDimensoesElemento()
 
     const pAltura = passaro.altura.valor

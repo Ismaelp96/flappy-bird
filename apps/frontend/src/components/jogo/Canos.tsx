@@ -1,3 +1,4 @@
+"use client"
 import Cano from "./Cano"
 
 export interface CanoProps {
