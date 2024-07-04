@@ -1,4 +1,4 @@
-import { CicloObstaculos, Obstaculo, Passaro } from ".."
+import { Obstaculos, Obstaculo, Passaro } from ".."
 
 export enum RespostaSensorColisao {
     NADA,
@@ -9,8 +9,8 @@ export enum RespostaSensorColisao {
 export default class SensorColisao {
     aferir(
         passaro: Passaro,
-        obstaculosAnteriores: CicloObstaculos,
-        obstaculos: CicloObstaculos,
+        obstaculosAnteriores: Obstaculos,
+        obstaculos: Obstaculos,
     ): RespostaSensorColisao {
         const obstaculoAnterior = this.obstaculoCruzandoCentro(
             passaro,
@@ -30,7 +30,7 @@ export default class SensorColisao {
         }
     }
 
-    private detectarColisaoX(passaro: Passaro, obstaculos: CicloObstaculos): boolean {
+    private detectarColisaoX(passaro: Passaro, obstaculos: Obstaculos): boolean {
         const calda = 0.5
         const bico = 0.5 + passaro.largura.valor
         return obstaculos.itens.some((obstaculo) => {
@@ -41,7 +41,7 @@ export default class SensorColisao {
         })
     }
 
-    private detectarColisaoY(passaro: Passaro, obstaculos: CicloObstaculos): boolean {
+    private detectarColisaoY(passaro: Passaro, obstaculos: Obstaculos): boolean {
         const topo = passaro.altitude.valor + passaro.altura.valor
         const base = passaro.altitude.valor
 
@@ -53,7 +53,7 @@ export default class SensorColisao {
 
     private obstaculoCruzandoCentro(
         passaro: Passaro,
-        obstaculos: CicloObstaculos,
+        obstaculos: Obstaculos,
     ): Obstaculo | null {
         const obstaculoCruzandoCentro =
             obstaculos.itens.filter((obstaculo) => {

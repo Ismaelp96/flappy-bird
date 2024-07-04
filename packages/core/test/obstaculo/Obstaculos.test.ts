@@ -1,14 +1,14 @@
-import { CicloObstaculos, EspacoObstaculos, Nivel } from "../../src"
+import { Obstaculos, EspacoObstaculos, Nivel } from "../../src"
 
 test("Deve criar obstaculos", () => {
-    const obstaculos = CicloObstaculos.novo()
+    const obstaculos = Obstaculos.novo()
     expect(obstaculos.itens.length).toBe(5)
     expect(obstaculos.nivel).toBe(Nivel.MEDIO)
     expect(obstaculos.espaco).toBe(EspacoObstaculos.NORMAL)
 })
 
 test("Deve animar os obstaculos diminuindo as posições", () => {
-    const o1 = CicloObstaculos.novo()
+    const o1 = Obstaculos.novo()
     const o2 = o1.animar()
     expect(o2.itens[0]!.posicao.valor).toBeLessThan(o1.itens[0]!.posicao.valor)
     expect(o2.itens[1]!.posicao.valor).toBeLessThan(o1.itens[1]!.posicao.valor)
@@ -18,7 +18,7 @@ test("Deve animar os obstaculos diminuindo as posições", () => {
 })
 
 test("Deve animar os obstaculos até primeiro mudar para última posição", () => {
-    const o1 = CicloObstaculos.novo()
+    const o1 = Obstaculos.novo()
     const o2 = Array(1100)
         .fill(0)
         .reduce((acc) => acc.animar(), o1)
